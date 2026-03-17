@@ -1,42 +1,49 @@
 ﻿using SQLite;
-using Location = TourGuideApp.Models.Location;
+using TourGuideApp.Models;
 
-namespace TourGuideApp.Database
+namespace TourGuideApp.Database;
+
+public class DatabaseService
 {
-    public class DatabaseService
+    SQLiteAsyncConnection db;
+
+    public DatabaseService(string dbPath)
     {
-        private SQLiteConnection database;
+        db = new SQLiteAsyncConnection(dbPath);
+    }
 
-        public DatabaseService(string dbPath)
-        {
-            database = new SQLiteConnection(dbPath);
+    public async Task<RestaurantTranslations?> GetRestaurantTranslation(int restaurantId)
+    {
+        return await db.Table<RestaurantTranslations>()
+                       .Where(t => t.RestaurantId == restaurantId)
+                       .FirstOrDefaultAsync();
+    }
 
-            // tạo bảng nếu chưa có
-            database.CreateTable<Location>();
-        }
+    public async Task<List<RestaurantTranslations>> GetRestaurants(string lang)
+    {
+        return await db.Table<RestaurantTranslations>()
+            .Where(r => r.LanguageCode == lang)
+            .ToListAsync();
+    }
 
-        // lấy toàn bộ địa điểm
-        public List<Location> GetLocations()
-        {
-            return database.Table<Location>().ToList();
-        }
+    public async Task<Restaurants> GetRestaurant(int id)
+    {
+        return await db.Table<Restaurants>()
+            .Where(r => r.Id == id)
+            .FirstOrDefaultAsync();
+    }
 
-        // thêm địa điểm mới
-        public int SaveLocation(Location location)
-        {
-            return database.Insert(location);
-        }
+    public async Task<List<Menus>> GetMenus(int restaurantId)
+    {
+        return await db.Table<Menus>()
+            .Where(m => m.RestaurantId == restaurantId)
+            .ToListAsync();
+    }
 
-        // cập nhật địa điểm
-        public int UpdateLocation(Location location)
-        {
-            return database.Update(location);
-        }
-
-        // xóa địa điểm
-        public int DeleteLocation(Location location)
-        {
-            return database.Delete(location);
-        }
+    public async Task<List<RestaurantImages>> GetImages(int restaurantId)
+    {
+        return await db.Table<RestaurantImages>()
+            .Where(i => i.RestaurantId == restaurantId)
+            .ToListAsync();
     }
 }

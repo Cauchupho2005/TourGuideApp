@@ -79,22 +79,16 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Compile Update="Services\Pages\LocationListPage.xaml.cs">
-	    <DependentUpon>LocationListPage.xaml</DependentUpon>
-	  </Compile>
-	</ItemGroup>
-
-	<ItemGroup>
-	  <MauiXaml Update="Services\Pages\LocationDetailPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Services\Pages\LocationListPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	</ItemGroup>
-
-	<ItemGroup>
 	  <Folder Include="Resources\Raw\Audio\" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiXaml Update="Services\Pages\RestaurantDetailPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Services\Pages\RestaurantListPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	</ItemGroup>
 
 </Project>

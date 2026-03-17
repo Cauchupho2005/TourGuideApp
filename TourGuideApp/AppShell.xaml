@@ -4,11 +4,12 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:TourGuideApp"
+    xmlns:pages="clr-namespace:TourGuideApp.Pages"
     Title="TourGuideApp">
 
     <ShellContent
-        Title="Home"
-        ContentTemplate="{DataTemplate local:MainPage}"
-        Route="MainPage" />
+        Title="Restaurants"
+        ContentTemplate="{DataTemplate pages:RestaurantListPage}"
+        Route="RestaurantListPage" />
 
 </Shell>

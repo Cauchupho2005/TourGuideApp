@@ -1,15 +1,13 @@
-﻿using TourGuideApp.Database;
-using TourGuideApp.Pages;
+﻿using TourGuideApp.Pages;
 
-namespace TourGuideApp
+namespace TourGuideApp;
+
+public partial class App : Application
 {
-    public partial class App : Application
+    public App()
     {
-        public App(DatabaseService db)
-        {
-            InitializeComponent();
+        InitializeComponent();
 
-            MainPage = new NavigationPage(new LocationListPage(db));
-        }
+        MainPage = new NavigationPage(new RestaurantListPage());
     }
 }
